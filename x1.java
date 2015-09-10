@@ -2,48 +2,80 @@
 //////// What is my name?  (CST 112; today's date?)
 
 //// GLOBALS:  coordinates, speed, etc.
-float x, y;       // Position of creature.
+      // Position of creature.
 float dx, dy;     // Speed.
 float horizon;
+float x = 1;
+float y = 100;
+float speed = 1;
+
 
 //// SETUP:  window size, initialization (start in middle of screen).
 void setup() {
-  size( 640,480);
-  horizon=  height/4;
-  x=  width/2;
-  y=  height/2;
-  dx=  3;
-  dy=  2;
+  size( 700,300);
+  horizon=  height/2;
+
+  dx=  1;
+  dy=  1;
+  
 }
 
 //// NEXT FRAME:  scene, action, show.
 void draw() {
   //// SCENE:  sky, sun, tree, house, etc.
-  background( 100,150,200 );                // sky
+  background( #1D254D);                // sky
   fill( 255,255,0 );
-  ellipse( width*3/4, height/8, 40,40 );    // sun
+  ellipse( width*3/4, height/2, 40,40 );    // sun
   // Grass
   fill( 100,200,100 );
   rect( 0,horizon, width,height*3/4 );      // grass.
   
   /* INSERT YOUR CODE HERE! */
-  triangle( 150,horizon, 120,horizon-50, 180,horizon-50  );  // tree
-  text( "This is NOT a good tree; please fix it!", 150,horizon );
+  noStroke();
+    fill(#50431F);
+  triangle( 150,horizon, 120,horizon, 135,horizon-100  ); 
+ fill( 100,200,100 );
+   triangle( 155,horizon-20, 115,horizon-20, 135,horizon-100  );
+  triangle( 155,horizon-20, 115,horizon-20, 135,horizon-80  ); 
+  // tree
+
+  text( "The Tree Has Been Fixed", 150,horizon );
                                             // house
 
   fill(0);
-  text( "My name is Mud", 10,height-20 );                                          
+  text( "My name is Felix", 10,height-20 );                                          
                                             
   //// ACTION:  move (x,y) coordinates.
-  x=  x + dx;
-  y=  y + dy;
+ 
   
   //// SHOW:  display the creature at (x,y)
 
   /* INSERT YOUR CODE HERE! */
-  fill(255,0,0); rect( x,y, 30,50 );        /* REPLACE THIS WITH YOUR OWN CODE! */
-  text( "Fred", x,y );
+  fill(200,50,166);    /* REPLACE THIS WITH YOUR OWN CODE! */
+  text( "Optimus Prime", x-25,horizon-25 );
 
+
+  move();
+  display();
+}
+
+void move() {
+  x = x + speed;
+  if (x > width) {
+    x = 0;
+  }
+}
+
+void display() {
+  fill(#E9222F);
+  rect(x,horizon-12,30,10);   //head
+  fill(#3C28EF);
+  rect(x,horizon-15,25,13);   //body
+ fill(#EFEF28);
+  ellipse(x+5,horizon-1,5,5);     //wheel left
+  fill(#EFEF28);
+  ellipse(x+20,horizon-1,5,5);     //wheel right
+  
 }
 
 
@@ -52,8 +84,8 @@ void mousePressed() {
   x=  mouseX;                             // Set (x,y) to mouse
   y=  mouseY;
   //
-  dx=  random( -6, +6 );                  // random speed.
-  dy=  random( -4, +4 );
+  dx=  random( -1, +1 );                  // random speed.
+  dy=  random( -1, +1 );
 }
 
 void keyPressed() {
