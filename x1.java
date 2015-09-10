@@ -15,8 +15,7 @@ void setup() {
   size( 700,300);
   horizon=  height/2;
 
-  dx=  1;
-  dy=  1;
+
   
 }
 
@@ -84,8 +83,8 @@ void mousePressed() {
   x=  mouseX;                             // Set (x,y) to mouse
   y=  mouseY;
   //
-  dx=  random( -1, +1 );                  // random speed.
-  dy=  random( -1, +1 );
+  speed=  random( 0, +50 );                  // random speed.
+ 
 }
 
 void keyPressed() {
